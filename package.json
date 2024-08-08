@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/tenshi33/RoboThinks2024/issues"
   },
-  "homepage": "https://github.com/tenshi33/RoboThinks2024#readme"
+  "homepage": "https://github.com/tenshi33/RoboThinks2024#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "nodemon": "^3.1.4"
+  }
 }
