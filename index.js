@@ -1,15 +1,19 @@
 const express = require('express');
 //const mongoose = require('mongoose');
-const { MongoClient } = require('mongodb');
+//const { MongoClient } = require('mongodb');
 const { default: mongoose } = require('mongoose');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 
 
 app.get('/',(req,res)=>{
-    res.send("Hello world")
+    res.sendFile(__dirname + '/public/index.html')
 })
 
 
