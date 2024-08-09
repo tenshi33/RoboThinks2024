@@ -2,6 +2,9 @@ const express = require('express');
 const User = require('./models/chathistory.user')
 const { default: mongoose } = require('mongoose');
 const bodyParser = require('body-parser');
+const chatcompletion = require('./backend/chatcompletion');
+
+
 
 
 const app = express();
@@ -30,6 +33,18 @@ app.get('/api/chathistory/user', async (req,res)=>{
     try {
         const users = await User.find({})
         res.status(200).json(users);
+    }catch(error){
+        res.status(500).json({message:error.message})
+    }
+})
+
+
+
+app.post('/api/chatcompletion', async (req,res)=>{
+    const message = req.body;
+    try {
+        const result = await chatcompletion(JSON.stringify(message));
+        res.status(200).json(result);
     }catch(error){
         res.status(500).json({message:error.message})
     }
