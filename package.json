@@ -2,11 +2,11 @@
   "name": "robothinks2024",
   "version": "1.0.0",
   "description": "-----------",
-  "main": "./backend/index.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon backend/index.js"
   },
   "repository": {
     "type": "git",

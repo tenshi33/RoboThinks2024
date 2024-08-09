@@ -1,8 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import chatcompletion from './chatcompletion.js'; // Ensure file extension is correct
-import Query from '../models/chathistory.ai.js'; // Ensure file extension is correct
+import chatcompletion from './utils/chatcompletion.js';
+import Query from './models/chathistory.ai.js'; 
 
 const app = express();
 
@@ -14,6 +14,8 @@ app.get('/', (req, res) => {
     res.sendFile(new URL('./public/index.html', import.meta.url).pathname);
 });
 
+
+//insert data to db
 app.post('/api/chathistory/query', async (req, res) => {
     console.log(req.body);
     const { question, answer } = req.body;
@@ -26,6 +28,8 @@ app.post('/api/chathistory/query', async (req, res) => {
     }
 });
 
+
+// get all data chathistory 
 app.get('/api/chathistory/query', async (req, res) => {
     try {
         const queries = await Query.find({});
@@ -34,6 +38,7 @@ app.get('/api/chathistory/query', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
 
 app.post('/api/chatcompletion', async (req, res) => {
     const mess = req.body.message;
@@ -46,6 +51,9 @@ app.post('/api/chatcompletion', async (req, res) => {
     }
 });
 
+
+
+//setup the database and port
 mongoose.connect("mongodb+srv://Noir:uDuEfWwZGT8oEIyp@backenddb.izjaw.mongodb.net/datas?retryWrites=true&w=majority&appName=backendDB")
     .then(() => {
         console.log("Database is connected");

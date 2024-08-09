@@ -11,9 +11,9 @@ npm install
 
 # Start with nodemon
 
-npm run dev
+nodemon index.js
 
-
+node client/public/index.js 
 # Api error
 ------------
 
