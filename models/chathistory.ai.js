@@ -1,10 +1,11 @@
-const mongoose = require('mongoose');
-const autoIncrement = require('mongoose-sequence')(mongoose);
+import mongoose from 'mongoose';
+import mongooseSequence from 'mongoose-sequence';
+const autoIncrement = mongooseSequence(mongoose);
 
 const querySchema = new mongoose.Schema({
   query_count: {
     type: Number,
-    unique: true, 
+    unique: true,
   },
   question: {
     type: String,
@@ -17,14 +18,13 @@ const querySchema = new mongoose.Schema({
     trim: true,
   },
   timestamp: {
-    type: Date, 
-    default: Date.now, 
+    type: Date,
+    default: Date.now,
   },
 });
 
-
 querySchema.plugin(autoIncrement, { inc_field: 'query_count' });
+
 const Query = mongoose.model('Query', querySchema);
 
-
-module.exports = Query;
+export default Query;
