@@ -1,8 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import chatcompletion from './backend/chatcompletion.js'; // Ensure file extension is correct
-import Query from './models/chathistory.ai.js'; // Ensure file extension is correct
+import chatcompletion from './chatcompletion.js'; // Ensure file extension is correct
+import Query from '../models/chathistory.ai.js'; // Ensure file extension is correct
 
 const app = express();
 

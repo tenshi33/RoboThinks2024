@@ -10,7 +10,8 @@ Run the following command to install all necessary dependencies:
 npm install
 
 # Start with nodemon
-nodemon index.js
+
+npm run dev
 
 
 # Api error
