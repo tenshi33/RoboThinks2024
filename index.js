@@ -43,6 +43,7 @@ app.get('/api/chathistory/user', async (req,res)=>{
 app.post('/api/chatcompletion', async (req,res)=>{
     const message = req.body;
     try {
+        console.log(message);
         const result = await chatcompletion(JSON.stringify(message));
         res.status(200).json(result);
     }catch(error){
