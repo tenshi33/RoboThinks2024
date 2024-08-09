@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-sequence')(mongoose);
 
-const aiSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true, 
+const querySchema = new mongoose.Schema({
+  query_count: {
+    type: Number,
+    unique: true, 
   },
-  message: {
+  question: {
     type: String,
     required: true,
-    unique: true,
+    trim: true,
+  },
+  answer: {
+    type: String,
+    required: true,
     trim: true,
   },
   timestamp: {
@@ -18,7 +22,9 @@ const aiSchema = new mongoose.Schema({
   },
 });
 
-const Ai = mongoose.model('Ai', aiSchema);
+
+querySchema.plugin(autoIncrement, { inc_field: 'query_count' });
+const Query = mongoose.model('Query', querySchema);
 
 
-module.exports = Ai;
+module.exports = Query;

@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('./models/chathistory.user')
+const Query = require('./models/chathistory.ai');
 const { default: mongoose } = require('mongoose');
 const bodyParser = require('body-parser');
 const chatcompletion = require('./backend/chatcompletion');
@@ -18,10 +18,14 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/public/index.html')
 });
 
-//send data to the database
-app.post('/api/chathistory/user', async (req,res)=>{
+
+
+app.post('/api/chathistory/query', async (req,res)=>{
+    console.log(req.body);
+    const {question, answer} = req.body;
     try{
-        const user = await User.create(req.body)
+        const user = await Query.create({question:question, answer:answer})
+        console.log(user);
         res.status(200).json(user)
     }catch(error){
         res.status(500).json({message:error.message})
@@ -29,22 +33,21 @@ app.post('/api/chathistory/user', async (req,res)=>{
 })
 
 //get add the chathistory data
-app.get('/api/chathistory/user', async (req,res)=>{
+app.get('/api/chathistory/query', async (req,res)=>{
     try {
-        const users = await User.find({})
-        res.status(200).json(users);
+        const queries = await Query.find({})
+        res.status(200).json(queries);
     }catch(error){
         res.status(500).json({message:error.message})
     }
 })
 
 
-
 app.post('/api/chatcompletion', async (req,res)=>{
-    const message = req.body;
+    const mess = req.body.message;
     try {
-        console.log(message);
-        const result = await chatcompletion(JSON.stringify(message));
+        console.log(mess);
+        const result = await chatcompletion(JSON.stringify(mess));
         res.status(200).json(result);
     }catch(error){
         res.status(500).json({message:error.message})
