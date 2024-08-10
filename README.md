@@ -11,21 +11,27 @@ npm install
 
 # Start with nodemon
 
-nodemon index.js
+npm run dev // to run the server auto save 
 
-node client/public/index.js 
+npm run try // to run the client side js
+
+
 # Api error
 ------------
 
-Create a .env file in the root directory of your project and add the following line:
+Create .env file in the root directory of your project and add the following line:
 
 OPENAI_API_KEY=your_api_key
+MONGO_URI=link
 
 
 # .gitignore
 
 ------------
-
+create .gitignore then add 
+  |
+  v
+ 
 node_modules/
 .env
 

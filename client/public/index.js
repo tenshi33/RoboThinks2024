@@ -2,5 +2,5 @@
 import chatcompletion from "../utils/chatcompletion.js";
 
 
-const message = "who is Yunlin";
+const message = "who is BMM";
 chatcompletion(message)
