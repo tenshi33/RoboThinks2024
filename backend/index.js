@@ -5,6 +5,7 @@ import Query from './models/chathistory.model.js';
 import connectDB from './config/DBconfig.js';
 import getHistory from './utils/getHistory.js';
 import addData from './utils/addData.js';
+import ConvertTextToSpeech from './utils/TTSopenai.js';
 
 
 const app = express();
@@ -22,8 +23,13 @@ app.get('/', (req, res) => {
 
 //insert data to db
 app.post('/api/chathistory/query', async (req, res) => {
-    const { question, answer } = req.body;
-    addData(question, answer);
+    try{
+        const { question, answer } = req.body;
+        const adddata = await addData({question, answer});
+        res.status(200).json(adddata);
+    }catch(error){
+        res.status(500).json(error)
+    }
 });
 
 
@@ -38,13 +44,12 @@ app.post('/api/chatcompletion', async (req, res) => {
     try {
         console.log(mess);
         const result = await chatcompletion(mess);
+        ConvertTextToSpeech(result);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
-
-
 
 connectDB()
     .then(() => {
