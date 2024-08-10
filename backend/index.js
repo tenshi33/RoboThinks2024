@@ -1,10 +1,15 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import chatcompletion from './utils/chatcompletion.js';
-import Query from './models/chathistory.ai.js'; 
+import Query from './models/chathistory.model.js'; 
+import connectDB from './config/DBconfig.js';
+import getHistory from './utils/getHistory.js';
+import addData from './utils/addData.js';
+
 
 const app = express();
+const PORT = 3000 ;
+const HOST = '127.0.0.1';
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,26 +22,14 @@ app.get('/', (req, res) => {
 
 //insert data to db
 app.post('/api/chathistory/query', async (req, res) => {
-    console.log(req.body);
     const { question, answer } = req.body;
-    try {
-        const user = await Query.create({ question, answer });
-        console.log(user);
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+    addData(question, answer);
 });
 
 
 // get all data chathistory 
 app.get('/api/chathistory/query', async (req, res) => {
-    try {
-        const queries = await Query.find({});
-        res.status(200).json(queries);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+    getHistory();
 });
 
 
@@ -53,14 +46,10 @@ app.post('/api/chatcompletion', async (req, res) => {
 
 
 
-//setup the database and port
-mongoose.connect("mongodb+srv://Noir:uDuEfWwZGT8oEIyp@backenddb.izjaw.mongodb.net/datas?retryWrites=true&w=majority&appName=backendDB")
+connectDB()
     .then(() => {
-        console.log("Database is connected");
-        app.listen(3000, () => {
-            console.log("Listening on port 3000");
+        app.listen(PORT,HOST, () => {
+            console.log(`Server running at http://${HOST}:${PORT}/`);
         });
-    })
-    .catch(error => {
-        console.error("Database connection error:", error);
     });
+

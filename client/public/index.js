@@ -1,6 +1,6 @@
-// start the server first and enter the node public/index.js in terminal 
+// start the server first the run npm run try 
 import chatcompletion from "../utils/chatcompletion.js";
 
 
-const message = "who is alan turing";
+const message = "who is Yunlin";
 chatcompletion(message)
