@@ -6,18 +6,23 @@ import connectDB from './config/DBconfig.js';
 import getHistory from './utils/getHistory.js';
 import addData from './utils/addData.js';
 import ConvertTextToSpeech from './utils/TTSopenai.js';
+import path from 'path';
+import { fileURLToPath } from 'url';;
 
 
 const app = express();
 const PORT = 3000 ;
 const HOST = '127.0.0.1';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../client/public')));
+
 
 app.get('/', (req, res) => {
-    res.sendFile(new URL('./public/index.html', import.meta.url).pathname);
+    res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });
 
 
