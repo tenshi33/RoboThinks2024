@@ -5,7 +5,7 @@ import 'dotenv/config';
 
 
 
-require('dotenv').config();
+//require('dotenv').config();
 const apiKey = process.env.OPENAI_API_KEY;
 
 const transcribeAudio = async (sttFileAudio) => {
@@ -26,5 +26,4 @@ const transcribeAudio = async (sttFileAudio) => {
         console.error('Error transcribing audio:', error.response ? error.response.data : error.message); 
     }
 };
-
-module.exports = (transcribeAudio) //export and takes one argument (audio file path)
+export default transcribeAudio; //export and takes one argument (audio file path)

@@ -2,11 +2,12 @@ import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 import 'dotenv/config';
-import './stt'
+import transcribeAudio from './STTopenai.js'
+
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-const speechFile = path.resolve("./backend/src/audio.mp3");
+const speechFile = path.resolve('./client/src/convertedSpeech.wav');
 
 export default async function ConvertTextToSpeech(message) {
   const mp3 = await openai.audio.speech.create({
@@ -21,4 +22,3 @@ export default async function ConvertTextToSpeech(message) {
 
 
 
-ConvertTextToSpeech("Magandang Umaga Friends");

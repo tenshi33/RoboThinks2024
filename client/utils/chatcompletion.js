@@ -16,8 +16,9 @@ export default async function chatcompletion(mess){
     if (result.ok) {
         const data = await result.json(); // Parse the response JSON
         const inputDB = {question:message,answer:data}
-        insertToDB(inputDB)
-        console.log('Response data:', data); // Log the response data if needed
+        //insertToDB(inputDB)
+        //console.log('Response data:', data); // Log the response data if needed
+        return data;
     } else {
         console.error('Response status:', result.status); // Log the status for debugging
     }
