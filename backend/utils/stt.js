@@ -6,7 +6,7 @@ import 'dotenv/config';
 
 
 require('dotenv').config();
-const apiKey = process.env.OPENAI_API_KEY || 'sk-proj-fBDWMrxWEYvYcXA1A7mKT3BlbkFJ6ygUZMsX13f1puf4C9sP ';
+const apiKey = process.env.OPENAI_API_KEY;
 
 const transcribeAudio = async (sttFileAudio) => {
     try {
