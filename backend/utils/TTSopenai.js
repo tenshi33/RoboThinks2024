@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 import 'dotenv/config';
+import './stt'
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
