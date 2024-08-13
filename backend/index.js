@@ -17,7 +17,11 @@ const HOST = '0.0.0.0';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://robothinks2024.onrender.com',
+    methods: 'GET,POST',
+    allowedHeaders: 'Content-Type, Authorization'
+  }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client/public')));
