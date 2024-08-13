@@ -2,11 +2,11 @@
   "name": "robothinks2024",
   "version": "1.0.0",
   "description": "Robothinks main repo",
-  "homepage": "./client/index.html",
   "scripts": {
     "install": "npm install --prefix backend && npm install --prefix client",
     "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix client\"",
-    "start": "npm run start --prefix backend"
+    "build": "npm run build --prefix client",
+    "start": "npm run build --prefix client && npm run start --prefix backend"
   },
   "author": "",
   "license": "ISC",
