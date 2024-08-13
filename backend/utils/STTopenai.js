@@ -26,4 +26,6 @@ const transcribeAudio = async (sttFileAudio) => {
         console.error('Error transcribing audio:', error.response ? error.response.data : error.message); 
     }
 };
+
+
 export default transcribeAudio; //export and takes one argument (audio file path)
