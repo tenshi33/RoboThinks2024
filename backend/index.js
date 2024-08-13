@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';import ConvertTextToSpeech from './utils/TTS
 
 const app = express();
 const PORT = 3000 ;
-const HOST = '127.0.0.1';
+const HOST = '0.0.0.0';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/public/index.html'));
+    res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 

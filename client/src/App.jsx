@@ -10,7 +10,7 @@ const Chat = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/api/chatcompletion", {
+      const response = await axios.post("http://0.0.0.0:3000/api/chatcompletion", {
         message: message,
       });
 
