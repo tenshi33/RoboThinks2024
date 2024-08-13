@@ -2,7 +2,7 @@
   "name": "robothinks2024",
   "version": "1.0.0",
   "description": "Robothinks main repo",
-  "main": "index.js",
+  "homepage": "./client/index.html",
   "scripts": {
     "install": "npm install --prefix backend && npm install --prefix client",
     "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix client\"",
